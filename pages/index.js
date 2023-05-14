@@ -1,5 +1,17 @@
-import React from "react";
+import React, { useState, createContext } from "react";
 
-export default function Auth() {
-  return <div className="background">auth</div>;
-}
+export const Context = createContext();
+
+export const ContextProvider = (props) => {
+  const [username, setUsername] = useState("");
+  const [secret, setSecret] = useState("");
+
+  const value = {
+    username,
+    setUsername,
+    secret,
+    setSecret,
+  };
+
+  return <Context.Provider value={value}>{props.children}</Context.Provider>;
+};
